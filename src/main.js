@@ -1,4 +1,10 @@
 
-const gui = require('nw.gui')
+import * as desktop from './desktop'
+import store from './store'
 
-gui.Window.open('./index.html#login')
+global.store = store
+
+desktop.openWindow('./index.html#/login')
+
+// 调试
+desktop.showDevTools()
