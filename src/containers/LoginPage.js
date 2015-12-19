@@ -1,6 +1,6 @@
 
-import React, { Component } from 'react';
-// import Login from '../components/Login';
+import React, { Component } from 'react'
+// import Login from '../components/Login'
 
 export default class LoginPage extends Component {
   render() {
@@ -8,6 +8,6 @@ export default class LoginPage extends Component {
       <div>
         <h1>Hello</h1>
       </div>
-    );
+    )
   }
 }
