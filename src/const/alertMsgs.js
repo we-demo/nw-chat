@@ -1,0 +1,2 @@
+
+export const INVALID_LOGIN_INFO = 'INVALID_LOGIN_INFO'

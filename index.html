@@ -6,12 +6,7 @@
 <body>
   <div id="root"></div>
   <script>
-  // '#/login' => 'login'
-  const hash = location.hash.substr(2)
-
-  // require(`./${hash}`) // 解析不到nw.gui 可能还有别的问题
-  const entry = hash === 'main' ? 'main' : 'web'
-  document.write(`<script src="dist/${entry}.js"><\/script>`) // `\/`转义
+  document.write(`<script src="dist/entry.js"><\/script>`) // `\/`转义
   </script>
 </body>
 </html>

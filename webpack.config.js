@@ -1,6 +1,5 @@
 'use strict'
 const webpack = require('webpack')
-const DefinePlugin = webpack.DefinePlugin
 
 module.exports = {
   module: {
@@ -17,14 +16,15 @@ module.exports = {
     ]
   },
   entry: {
-    'web.js': './src/web.js',
-    'main.js': './src/main.js'
+    'entry.js': './src/entry.js'
   },
   output: {
     path: 'dist/',
     filename: '[name]',
+    sourceMapFilename: '[name].map',
     libraryTarget: 'var'
   },
+  devtool: 'cheap-module-source-map',
   target: 'node-webkit',
   node: {
     __filename: true,
@@ -35,11 +35,11 @@ module.exports = {
     packageMains: ['webpack', 'browser', 'web', 'browserify', ['jam', 'main'], 'main']
   },
   plugins: [
-    new webpack.NoErrorsPlugin(),
-    new DefinePlugin({
+    // new webpack.NoErrorsPlugin(),
+    new webpack.DefinePlugin({
       'rootDir': JSON.stringify(__dirname),
       'process.env': {
-        'NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+        'NODE_ENV': JSON.stringify('development')
       }
     })
   ],

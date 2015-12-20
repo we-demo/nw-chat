@@ -1,24 +1,41 @@
 
 import {
-  SET_CURR_USER,
-} from '../const/actionTypes'
+  LOAD_USER,
+  USER_LOGIN,
+  USER_LOGOUT,
+} from '../const'
 
 /*
   [user]
-    - currUserId
-    - usersLoaded
+    - currUserId :String
+    - cachedUsers :Map
 */
 
-function currUserId(state = null, action) {
+export function currUserId(state = null, action) {
   switch (action.type) {
-    case SET_CURR_USER:
-      return action.userId
+
+    case USER_LOGIN:
+      return action.result.id
+
+    case USER_LOGOUT:
+      return null
 
     default:
       return state
   }
 }
 
-export {
-  currUserId,
+export function cachedUsers(state = {}, action) {
+  switch (action.type) {
+
+    case USER_LOGIN:
+    case LOAD_USER:
+      return {
+        ...state,
+        [action.result.id]: action.result,
+      }
+
+    default:
+      return state
+  }
 }

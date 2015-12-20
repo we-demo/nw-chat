@@ -11,6 +11,12 @@ NW.js + React + Redux + Webpack => Chat
 
 ## 设计理念
 
+- 尽量用promise 不用thunk(callback)
+  
+  ```js
+  
+  ```
+
 - const取消依赖keymirror 影响解构export test保障
 
   ```js

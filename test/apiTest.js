@@ -37,6 +37,18 @@ describe('api', () => {
 
   })
 
+  it('#loadGroups', () => {
+
+    return api.loadGroups()
+
+  })
+
+  it('#loadDiscus', () => {
+
+    return api.loadDiscus()
+
+  })
+
   it('#loadConvers', () => {
 
     return api.loadConvers()
@@ -44,7 +56,7 @@ describe('api', () => {
 
         _.each(_.sample(convers, 3), (conver) => {
           assert(conver.type)
-          assert(conver.id)
+          assert(conver.targetId)
           assert(conver.msgs)
 
           _.each(_.sample(conver.msgs, 3), (msg) => {

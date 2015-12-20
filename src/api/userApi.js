@@ -2,7 +2,7 @@
 import _ from 'lodash'
 import Chance from 'chance'
 import localface from 'localface'
-import { FEMALE, MALE } from '../const'
+import { FEMALE, MALE, INVALID_LOGIN_INFO } from '../const'
 
 const chance = new Chance()
 
@@ -10,7 +10,7 @@ export function userLogin(id, password) {
   return new Promise((res, rej) => {
     setTimeout(() => {
       if (password !== '123') {
-        return rej(new Error(1))
+        return rej(new Error(INVALID_LOGIN_INFO))
       }
       const user = mockUser()
       user.id = id
@@ -24,7 +24,7 @@ export function userLogin(id, password) {
 export function loadUsers() {
   return new Promise((res) => {
     setTimeout(() => {
-      let users = _.times(12, () => {
+      let users = _.times(500, () => {
         return mockUser()
       })
       users = _.mapKeys(users, 'id')
