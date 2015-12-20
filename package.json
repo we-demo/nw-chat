@@ -8,12 +8,14 @@
   "scripts": {
     "lint": "eslint src test",
     "test": "mocha --compilers js:babel-core/register",
+    "test-cov": "babel-node ./node_modules/isparta/bin/isparta cover _mocha",
     "dev": "webpack && webpack -w"
   },
   "devDependencies": {
     "babel-core": "^6.3.21",
     "babel-eslint": "^4.1.6",
     "babel-loader": "^6.2.0",
+    "babel-polyfill": "^6.3.14",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13",
@@ -22,6 +24,7 @@
     "eslint": "^1.10.3",
     "eslint-config-rackt": "^1.1.1",
     "eslint-plugin-react": "^3.11.3",
+    "isparta": "^4.0.0",
     "localface": "0.0.3",
     "redux-logger": "^2.0.4",
     "style-loader": "^0.13.0",

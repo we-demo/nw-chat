@@ -63,6 +63,7 @@ describe('api', () => {
             assert(msg.type)
             assert(msg.id)
             assert(msg.fromId)
+            assert.equal(typeof msg.fromId, 'string')
           })
         })
 

@@ -1,7 +1,6 @@
 
 import {
   USER_LOGIN,
-  LOAD_CONVERS,
   LOAD_USERS,
   LOAD_USER,
 } from '../const'
@@ -13,13 +12,6 @@ export function userLogin(id, password) {
   return dispatchPromise(
     USER_LOGIN,
     api.userLogin(id, password)
-  )
-}
-
-export function loadConvers() {
-  return dispatchPromise(
-    LOAD_CONVERS,
-    api.loadConvers()
   )
 }
 

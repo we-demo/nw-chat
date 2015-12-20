@@ -1,6 +1,9 @@
 
 import React, { Component } from 'react'
-import { userLogin } from '../actions'
+import {
+  loadUsers, loadGroups, loadDiscus,
+  loadConvers, userLogin,
+} from '../actions'
 import { openHome, closeWindow } from '../desktop'
 
 
@@ -8,12 +11,21 @@ function handleLogin() {
   userLogin('test.user', '123')
     .then((user) => {
       console.log('login success', user)
+    })
+    .catch((err) => {
+      console.error(err)
+      alert(err.message)
+    })
+    .then(loadUsers)
+    .then(loadGroups)
+    .then(loadDiscus)
+    .then(loadConvers)
+    .then(() => {
       closeWindow()
       openHome()
     })
     .catch((err) => {
       console.error(err)
-      alert(err.message)
     })
 }
 

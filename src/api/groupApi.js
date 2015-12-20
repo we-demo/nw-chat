@@ -11,7 +11,8 @@ export function loadGroups() {
         return mockGroup()
       })
       groups = _.mapKeys(groups, 'id')
-      res(global.__mockGroups = groups)
+      global.__mockGroups = groups
+      res(groups)
     }, 500)
   })
 }
@@ -23,14 +24,15 @@ export function loadDiscus() {
         return mockDiscu()
       })
       discus = _.mapKeys(discus, 'id')
-      res(global.__mockDiscus = discus)
+      global.__mockDiscus = discus
+      res(discus)
     }, 500)
   })
 }
 
 function mockGroup() {
   const memberIds = _.sample(
-    [ _.keys(global.__mockUsers) ].concat(global.__currUserId),
+    _.keys(global.__mockUsers).concat(global.__currUserId),
     _.random(1, 150),
   )
   let adminIds = _.sample(memberIds, _.random(1, 6))
@@ -48,7 +50,7 @@ function mockGroup() {
 
 function mockDiscu() {
   const memberIds = _.sample(
-    [ _.keys(global.__mockUsers) ].concat(global.__currUserId),
+    _.keys(global.__mockUsers).concat(global.__currUserId),
     _.random(1, 25),
   )
   const discu = {

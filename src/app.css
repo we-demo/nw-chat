@@ -2,3 +2,7 @@
 h1 {
   font-size: 5em;
 }
+
+.home .left {
+  min-width: 220px;
+}

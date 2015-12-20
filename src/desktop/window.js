@@ -7,6 +7,10 @@ export function showDevTools() {
   win.showDevTools()
 }
 
+export function reloadWindow() {
+  win.reload()
+}
+
 export function closeWindow() {
   win.close()
 }

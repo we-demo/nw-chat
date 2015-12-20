@@ -1,5 +1,6 @@
 
 import {
+  LOAD_USERS,
   LOAD_USER,
   USER_LOGIN,
   USER_LOGOUT,
@@ -15,7 +16,7 @@ export function currUserId(state = null, action) {
   switch (action.type) {
 
     case USER_LOGIN:
-      return action.result.id
+      return action.payload.id
 
     case USER_LOGOUT:
       return null
@@ -28,11 +29,17 @@ export function currUserId(state = null, action) {
 export function cachedUsers(state = {}, action) {
   switch (action.type) {
 
-    case USER_LOGIN:
-    case LOAD_USER:
+    case LOAD_USERS:
       return {
         ...state,
-        [action.result.id]: action.result,
+        ...action.payload,
+      }
+
+    case LOAD_USER:
+    case USER_LOGIN:
+      return {
+        ...state,
+        [action.payload.id]: action.payload,
       }
 
     default:
