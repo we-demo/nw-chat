@@ -4,10 +4,13 @@ import {
   compose, combineReducers,
 } from 'redux'
 import promise from 'redux-promise'
+import createLogger from 'redux-logger'
 import * as reducers from './reducers'
 
+const logger = createLogger()
+
 const finalCreateStore = compose(
-  applyMiddleware(promise),
+  applyMiddleware(promise, logger),
 )(createStore)
 
 const rootReducer = combineReducers({

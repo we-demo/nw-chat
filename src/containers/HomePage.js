@@ -2,29 +2,27 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
-import { loadConvers } from '../actions'
 import {
-  currUser, listedConvers,
+  setCurrConver,
+} from '../actions'
+import {
+  currUser, currConver, listedConvers,
   converTarget,
 } from '../selectors'
 
 
-function mapStateToProps(state) {
+@connect((state) => {
   return {
-    state,
+    state, // fixme
     currUser: currUser(state),
+    currConver: currConver(state),
     listedConvers: listedConvers(state),
   }
-}
-
-class HomePage extends Component {
-
-  componentWillMount() {
-
-  }
+})
+export default class HomePage extends Component {
 
   render() {
-    const { state, currUser, listedConvers } = this.props
+    const { state, currUser, currConver, listedConvers } = this.props
     return (
       <div className="kite kite--fill home">
         <div className="kite__item left">
@@ -36,10 +34,11 @@ class HomePage extends Component {
             <ul>
               {
                 _.map(listedConvers, (item) => {
-                  console.log(item, state)
                   const target = converTarget(state, item)
                   return (
-                    <li>({item.type}) {target.name || target.title}</li>
+                    <li key={target.id} onClick={()=>setCurrConver(target.id)}>
+                      ({item.type}) {target.name || target.title}
+                    </li>
                   )
                 })
               }
@@ -47,11 +46,19 @@ class HomePage extends Component {
           </div>
         </div>
         <div className="kite__item kite__item--full">
-          Right
+          {
+            currConver ? this.renderChat() : <div className="blank"></div>
+          }
         </div>
       </div>
     )
   }
-}
 
-export default connect(mapStateToProps)(HomePage)
+  renderChat() {
+    const { state, currConver } = this.props
+    const target = converTarget(state, currConver)
+    return (
+      <div>({currConver.type}) {target.name || target.title}</div>
+    )
+  }
+}

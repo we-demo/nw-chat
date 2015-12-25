@@ -19,7 +19,7 @@ export function currConverId(state = null, action) {
   switch (action.type) {
 
     case SET_CURR_CONVER:
-      return action.payload.id
+      return action.payload
 
     default:
       return state

@@ -1,18 +1,13 @@
 'use strict'
 const webpack = require('webpack')
+const WebpackNotifierPlugin = require('webpack-notifier')
 
 module.exports = {
   module: {
     loaders: [
-      {
-        test: /\.js?$/,
-        loaders: ['babel-loader'],
-        exclude: /node_modules/
-      },
-      {
-        test: /\.css$/,
-        loaders: ['style-loader', 'css-loader']
-      }
+      { test: /\.js?$/, exclude: /node_modules/, loader: 'babel' },
+      { test: /\.css$/, loader: 'style!css' },
+      { test: /\.scss$/, loader: 'style!css!sass' },
     ]
   },
   entry: {
@@ -35,6 +30,7 @@ module.exports = {
     packageMains: ['webpack', 'browser', 'web', 'browserify', ['jam', 'main'], 'main']
   },
   plugins: [
+    new WebpackNotifierPlugin(),
     // new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       'rootDir': JSON.stringify(__dirname),
