@@ -12,7 +12,7 @@ const chance = new Chance()
 export function loadConvers() {
   return new Promise((res) => {
     setTimeout(() => {
-      let convers = _.times(_.random(6, 14), () => {
+      let convers = _.times(_.random(16, 24), () => {
         const type = _.sample([ CONVER_USER, CONVER_GROUP, CONVER_DISCU ])
         let targetId
         let msgs

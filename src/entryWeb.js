@@ -7,7 +7,7 @@ import LoginPage from './containers/LoginPage'
 import HomePage from './containers/HomePage'
 import { reloadWindow } from './desktop'
 import 'normalize.css'
-import '../lib/kite.min.css'
+// import '../lib/kite.min.css'
 import './app.scss'
 
 const store = global.store

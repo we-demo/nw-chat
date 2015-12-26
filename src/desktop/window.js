@@ -36,7 +36,7 @@ export function openLogin() {
 export function openHome() {
   openWindow('./index.html#/home', {
     title: 'Home',
-    width: 1000,
+    width: 900,
     height: 600,
   })
 }

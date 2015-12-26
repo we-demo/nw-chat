@@ -24,13 +24,13 @@ export default class HomePage extends Component {
   render() {
     const { state, currUser, currConver, listedConvers } = this.props
     return (
-      <div className="kite kite--fill home">
-        <div className="kite__item left">
-          <div className="status">
+      <div className="home-page">
+        <div className="home-side">
+          <div className="user-status">
             <p>{currUser.name}</p>
             <p>{currUser.emotion}</p>
           </div>
-          <div className="contact">
+          <div className="contact-nav">
             <ul>
               {
                 _.map(listedConvers, (item) => {
@@ -45,9 +45,9 @@ export default class HomePage extends Component {
             </ul>
           </div>
         </div>
-        <div className="kite__item kite__item--full">
+        <div className="home-main">
           {
-            currConver ? this.renderChat() : <div className="blank"></div>
+            currConver ? this.renderChat() : <div className="home-blank"></div>
           }
         </div>
       </div>
@@ -58,7 +58,20 @@ export default class HomePage extends Component {
     const { state, currConver } = this.props
     const target = converTarget(state, currConver)
     return (
-      <div>({currConver.type}) {target.name || target.title}</div>
+      <div className="home-chat">
+        <div className="chat-top">
+          <h2>({currConver.type}) {target.name || target.title}</h2>
+        </div>
+        <div className="chat-content">
+          <div className="chat-main">
+            <div className="chat-msgs"></div>
+            <div className="chat-editor"></div>
+          </div>
+          <div className="chat-side">
+            <div className="chat-mems"></div>
+          </div>
+        </div>  
+      </div>
     )
   }
 }

@@ -3,6 +3,68 @@ h1 {
   font-size: 5em;
 }
 
-.home .left {
-  min-width: 220px;
+// 基本网格布局
+.home-page {
+  background-color: rgba(0, 0, 255, .2);
+  height: 100%;
+  display: flex;
+}
+.home-side {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+}
+.home-main {
+  flex: 1;
+  display: flex;
+}
+.user-status {
+  background-color: rgba(0, 255, 0, .2);
+  height: 120px;
+}
+.contact-nav {
+  background-color: rgba(255, 0, 0, .2);
+  flex: 1;
+}
+.home-blank {
+  background-color: rgba(255, 255, 0, .2);
+  flex: 1;
+}
+.home-chat {
+  background-color: rgba(255, 0, 255, .2);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.chat-top {
+  background-color: rgba(0, 255, 255, .2);
+  height: 80px;
+}
+.chat-content {
+  background-color: rgba(255, 255, 255, .2);
+  flex: 1;
+  display: flex;
+}
+.chat-side {
+  background-color: rgba(0, 0, 0, .2);
+  width: 160px;
+}
+.chat-main {
+  background-color: rgba(255, 255, 255, .2);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.chat-editor {
+  background-color: rgba(0, 127, 0, .2);
+  height: 120px;
+}
+.chat-msgs {
+  background-color: rgba(127, 0, 0, .2);
+  flex: 1;
+}
+
+// 联系人
+.contact-nav {
+  overflow: auto;
 }
