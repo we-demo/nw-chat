@@ -12,6 +12,14 @@ NW.js + React + Redux + Webpack => Chat
 
 ## 设计理念
 
+－ 文件夹中设立index.js 合并导出各分组
+
+  ```js
+  export * from './userApi'
+  export * from './groupApi'
+  export * from './converApi'
+  ```
+
 - const取消依赖keymirror 影响解构export test保障
 
   ```js

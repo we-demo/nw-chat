@@ -1,3 +1,9 @@
+// reset
+ul {
+  margin: 0;
+  padding: 0;
+}
+
 
 h1 {
   font-size: 5em;
@@ -67,4 +73,43 @@ h1 {
 // 联系人
 .contact-nav {
   overflow: auto;
+}
+
+// 操作按钮
+.chat-top {
+  position: relative;
+}
+.op-btn-group {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: flex;
+}
+.op-btn {
+  height: 3em;
+  line-height: 3em;
+  cursor: pointer;
+  background-color: silver;
+}
+.op-menu {
+  position: absolute;
+  li {
+    padding: 0 10px;
+    line-height: 38px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    background: white;
+    &:hover {
+      background: #eee;
+    }
+  }
+}
+.op-btn-group {
+  >li:last-child {
+    .op-menu {
+      right: 0;
+    }
+  }
 }
