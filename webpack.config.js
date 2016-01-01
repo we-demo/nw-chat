@@ -1,6 +1,7 @@
 'use strict'
 const webpack = require('webpack')
 const WebpackNotifierPlugin = require('webpack-notifier')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
   module: {
@@ -35,6 +36,7 @@ module.exports = {
   },
   plugins: [
     new WebpackNotifierPlugin(),
+    new CleanWebpackPlugin(['dist/']),
     // new webpack.NoErrorsPlugin(),
     new webpack.ExternalsPlugin('commonjs', [
       'babel-polyfill',
