@@ -1,6 +1,7 @@
 'use strict'
 const webpack = require('webpack')
 const WebpackNotifierPlugin = require('webpack-notifier')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   module: {
@@ -36,6 +37,11 @@ module.exports = {
   plugins: [
     new WebpackNotifierPlugin(),
     // new webpack.NoErrorsPlugin(),
+    new HtmlWebpackPlugin({
+      // hack: 解决mac无边框窗口title显示溢出
+      // 默认设置中文空格 需要时再通过js修改
+      title: '　'
+    }),
     new webpack.ExternalsPlugin('commonjs', [
       'babel-polyfill',
       'lodash',

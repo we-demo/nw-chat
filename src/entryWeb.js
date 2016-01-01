@@ -13,6 +13,10 @@ import './app.scss'
 const store = global.store
 
 
+const root = document.createElement('div')
+root.id = 'root'
+document.body.appendChild(root)
+
 render(
   <Provider store={store}>
     <Router>
@@ -20,7 +24,7 @@ render(
       <Route path="/home" component={HomePage} />
     </Router>
   </Provider>,
-  document.getElementById('root')
+  root
 )
 
 if (process.env.NODE_ENV === 'development') {

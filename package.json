@@ -1,7 +1,7 @@
 {
   "name": "nw-chat",
   "version": "0.0.0",
-  "main": "index.html#/main",
+  "main": "dist/index.html#/main",
   "window": {
     "show": false
   },
@@ -26,6 +26,7 @@
     "eslint-config-xo-react": "^0.3.0",
     "eslint-loader": "^1.1.1",
     "eslint-plugin-react": "^3.11.3",
+    "html-webpack-plugin": "^1.7.0",
     "isparta": "^4.0.0",
     "localface": "0.0.3",
     "node-sass": "^3.4.2",

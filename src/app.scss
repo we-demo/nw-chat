@@ -10,6 +10,9 @@ h1 {
 }
 
 // 基本网格布局
+html, body, #root {
+  height: 100%;
+}
 .home-page {
   background-color: rgba(0, 0, 255, .2);
   height: 100%;
