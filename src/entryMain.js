@@ -1,5 +1,5 @@
 
-import { showDevTools, openLogin } from './desktop'
+import { showDevTools, openLogin, fixMacMenu } from './desktop'
 import configureStore from './configureStore'
 
 global.store = configureStore()
@@ -8,6 +8,9 @@ global.store = configureStore()
 if (process.env.NODE_ENV === 'development') {
   showDevTools()
 }
+
+
+fixMacMenu()
 
 openLogin()
 

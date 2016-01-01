@@ -40,3 +40,18 @@ export function openHome() {
     height: 600,
   })
 }
+
+
+// 解决: Cut/Copy/Paste hotkeys doesn't work on Mac
+// https://github.com/nwjs/nw.js/issues/1955
+export function fixMacMenu() {
+  if (process.platform === 'darwin') {
+    const mb = new gui.Menu({ type: 'menubar' })
+    mb.createMacBuiltin('RoboPaint', {
+      hideEdit: false,
+      hideWindow: true,
+    })
+    gui.Window.get().menu = mb
+  }
+}
+
