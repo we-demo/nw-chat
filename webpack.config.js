@@ -4,8 +4,11 @@ const WebpackNotifierPlugin = require('webpack-notifier')
 
 module.exports = {
   module: {
+    preLoaders: [
+      { test: /\.jsx?$/, exclude: /node_modules/, loader: 'eslint' },
+    ],
     loaders: [
-      { test: /\.js?$/, exclude: /node_modules/, loader: 'babel' },
+      { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel' },
       { test: /\.css$/, loader: 'style!css' },
       { test: /\.scss$/, loader: 'style!css!sass' },
     ]
@@ -14,6 +17,7 @@ module.exports = {
     'entry.js': './src/entry.js'
   },
   output: {
+    pathinfo: true,
     path: 'dist/',
     filename: '[name]',
     sourceMapFilename: '[name].map',
@@ -32,6 +36,13 @@ module.exports = {
   plugins: [
     new WebpackNotifierPlugin(),
     // new webpack.NoErrorsPlugin(),
+    new webpack.ExternalsPlugin('commonjs', [
+      'babel-polyfill',
+      'lodash',
+      'chance',
+      'nconf',
+      'user-home',
+    ]),
     new webpack.DefinePlugin({
       'rootDir': JSON.stringify(__dirname),
       'process.env': {

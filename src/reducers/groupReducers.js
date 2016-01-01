@@ -1,5 +1,5 @@
 
-import _ from 'lodash'
+// import _ from 'lodash'
 import {
   LOAD_GROUPS,
   LOAD_GROUP,

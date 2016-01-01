@@ -78,8 +78,8 @@ export class DDPanel extends Component {
 
   render() {
     return (
-      <div ref="panel" style={{display:'none'}}
-          onClick={(e)=>this.onPanelClick(e)}>
+      <div ref="panel" style={{ display:'none' }}
+        onClick={(e)=>this.onPanelClick(e)}>
         {this.props.children}
       </div>
     )
