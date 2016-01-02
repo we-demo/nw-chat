@@ -31,7 +31,6 @@ export function listedConverIds(state = [], action) {
 
     case LOAD_CONVERS:
       return [
-        ...state,
         ..._.pluck(action.payload, 'targetId'),
       ]
 

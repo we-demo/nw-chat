@@ -31,6 +31,10 @@ module.exports = {
     __dirname: true
   },
   resolve: {
+    alias: {
+      'react': 'react-lite',
+      'react-dom': 'react-lite',
+    },
     extensions: ['', '.js', '.jsx'],
     packageMains: ['webpack', 'browser', 'web', 'browserify', ['jam', 'main'], 'main']
   },

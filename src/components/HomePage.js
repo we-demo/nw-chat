@@ -10,6 +10,7 @@ import {
   converTarget,
 } from '../selectors'
 import { DDTrigger, DDPanel } from './Dropdown'
+import Editor from './Editor'
 
 
 @connect((state) => {
@@ -83,7 +84,7 @@ export default class HomePage extends Component {
                   ].map((item) => {
                     const { label, value } = item
                     return (
-                      <li key={value} onClick={(e)=>this.onMenuClick(e, value)}>
+                      <li key={label} onClick={(e)=>this.onMenuClick(e, value)}>
                         {label}
                       </li>
                     )
@@ -97,7 +98,9 @@ export default class HomePage extends Component {
         <div className="chat-content">
           <div className="chat-main">
             <div className="chat-msgs"></div>
-            <div className="chat-editor"></div>
+            <div className="chat-editor">
+              <Editor />
+            </div>
           </div>
           <div className="chat-side">
             <div className="chat-mems"></div>

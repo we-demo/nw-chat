@@ -5,6 +5,20 @@ ul {
 }
 
 
+// 可选/不可选区域
+html {
+  -webkit-user-select: none;
+}
+.selectable {
+  -webkit-user-select: auto;
+}
+
+// 禁用mac上滑动回弹效果
+html {
+  overflow: hidden;
+}
+
+
 h1 {
   font-size: 5em;
 }
@@ -68,6 +82,20 @@ h1 {
 .chat-msgs {
   background-color: rgba(127, 0, 0, .2);
   flex: 1;
+}
+
+// 编辑器
+.chat-editor {
+  padding: .2em;
+  overflow-y: auto;
+}
+.editor {
+  height: 100%;
+  white-space: pre-wrap;
+  img {
+    max-width: 10em;
+    vertical-align: bottom;
+  }
 }
 
 // 联系人

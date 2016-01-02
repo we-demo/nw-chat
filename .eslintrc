@@ -6,10 +6,11 @@
     "mocha": true
   },
   "rules": {
+    "eol-last": 1,
     "valid-jsdoc": 0,
     "indent": 1,
     "strict": [1, "global"],
-    "no-console": 1,
+    "no-console": 0,
     "no-unused-vars": 1,
     "comma-dangle": [1, "always-multiline"],
     "no-multiple-empty-lines": 1,
