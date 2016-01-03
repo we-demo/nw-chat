@@ -9,7 +9,7 @@
     "lint": "eslint src test",
     "test": "mocha --compilers js:babel-core/register",
     "test-cov": "babel-node ./node_modules/isparta/bin/isparta cover _mocha",
-    "dev": "webpack -w --progress"
+    "dev": "webpack-dev-server --progress"
   },
   "devDependencies": {
     "babel-core": "^6.3.21",
@@ -30,11 +30,13 @@
     "isparta": "^4.0.0",
     "localface": "0.0.3",
     "node-sass": "^3.4.2",
+    "react-hot-loader": "^1.3.0",
     "redux-logger": "^2.3.1",
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.9",
     "webpack-dev-middleware": "^1.2.0",
+    "webpack-dev-server": "^1.14.0",
     "webpack-hot-middleware": "^2.4.1",
     "webpack-notifier": "^1.2.1"
   },
