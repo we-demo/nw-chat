@@ -8,6 +8,16 @@
 </head> 
 <body>
   <div id="root"></div>
-  <script src="http://localhost:3119/entry.js"></script>
+  <script>
+    if (location.hash === '#/main') {
+      if (!global._mainLoaded) { // 主进程只运行一次
+        document.write('<script src="http://localhost:3119/main.js""><\/script>')
+        global._mainLoaded = true
+      }
+    }
+    else {
+      document.write('<script src="http://localhost:3119/web.js""><\/script>')
+    }
+  </script>
 </body>
 </html>

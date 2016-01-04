@@ -17,11 +17,12 @@ module.exports = {
     ]
   },
   entry: {
-    'entry.js': [
+    'web.js': [
       'webpack-dev-server/client?http://localhost:'+ PORT,
       'webpack/hot/only-dev-server',
-      './src/entry.js'
-    ]
+      './src/entryWeb.js'
+    ],
+    'main.js': './src/entryMain.js'
   },
   output: {
     pathinfo: true,

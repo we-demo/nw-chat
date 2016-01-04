@@ -1,7 +1,7 @@
 
 import gui from 'nw.gui'
 
-const win = gui.Window.get()
+export const win = gui.Window.get()
 
 export function showDevTools() {
   win.showDevTools()
