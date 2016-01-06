@@ -11,6 +11,7 @@ import {
 } from '../selectors'
 import { DDTrigger, DDPanel } from './Dropdown'
 import Editor from './Editor'
+import Avatar from './Avatar'
 
 
 @connect((state) => {
@@ -38,8 +39,14 @@ export default class HomePage extends Component {
                 _.map(listedConvers, (item) => {
                   const target = converTarget(state, item)
                   return (
-                    <li key={target.id} onClick={()=>setCurrConver(target.id)}>
-                      ({item.type}) {target.name || target.title}
+                    <li key={target.id} className="conver-li"
+                      onClick={()=>setCurrConver(target.id)}>
+                      <div className="conver-li-icon">
+                        <Avatar src={target.avatar} />
+                      </div>
+                      <div className="conver-li-desc">
+                        ({item.type}) {target.name || target.title}
+                      </div>
                     </li>
                   )
                 })

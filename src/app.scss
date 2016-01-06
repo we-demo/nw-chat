@@ -98,9 +98,37 @@ h1 {
   }
 }
 
+// 头像
+.avatar {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  &-img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
 // 联系人
 .contact-nav {
   overflow: auto;
+}
+.conver-li {
+  display: flex;
+  height: 2em;
+  &-icon {
+    width: 2em;
+    height: 2em;
+    padding: .25em;
+    box-sizing: border-box;
+  }
+  &-desc {
+    flex: 1;
+    line-height: 2em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 
 // 操作按钮
