@@ -32,31 +32,45 @@ export function loadDiscus() {
 
 function mockGroup() {
   const memberIds = _.sample(
-    _.keys(global.__mockUsers).concat(global.__currUserId),
+    _.keys(global.__mockUsers),
     _.random(1, 150),
   )
   let adminIds = _.sample(memberIds, _.random(1, 6))
   if (_.random()) { // 一半的概率 自己是admin
     adminIds = _.union(adminIds, global.__currUserId)
   }
+  const avatars = _.pluck(_.map(memberIds.slice(0, 4), (id) => {
+    return global.__mockUsers[id]
+  }), 'avatar')
+  for (let i = avatars.length; i < 4; i++) {
+    avatars[i] = ''
+  }
   const group = {
     id: chance.guid(),
     title: chance.sentence({ words: _.random(1, 4) }),
     memberIds,
     adminIds,
+    avatars,
   }
   return group
 }
 
 function mockDiscu() {
   const memberIds = _.sample(
-    _.keys(global.__mockUsers).concat(global.__currUserId),
+    _.keys(global.__mockUsers),
     _.random(1, 25),
   )
+  const avatars = _.pluck(_.map(memberIds.slice(0, 4), (id) => {
+    return global.__mockUsers[id]
+  }), 'avatar')
+  for (let i = avatars.length; i < 4; i++) {
+    avatars[i] = ''
+  }
   const discu = {
     id: chance.guid(),
     title: chance.sentence({ words: _.random(1, 4) }),
     memberIds,
+    avatars,
   }
   return discu
 }

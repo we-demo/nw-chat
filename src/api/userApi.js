@@ -28,7 +28,6 @@ export function loadUsers() {
         return mockUser()
       })
       users = _.mapKeys(users, 'id')
-      global.__mockUsers = users
       res(users)
     }, 500)
   })
@@ -46,6 +45,10 @@ function mockUser() {
     emotion: chance.sentence(),
     phone: chance.phone(),
     email: chance.email(),
+  }
+  global.__mockUsers = {
+    ...global.__mockUsers,
+    [user.id]: user,
   }
   return user
 }

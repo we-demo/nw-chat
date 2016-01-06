@@ -103,9 +103,19 @@ h1 {
   position: relative;
   width: 100%;
   height: 100%;
-  &-img {
+  &-one {
     width: 100%;
     height: 100%;
+    border-radius: 100%;
+    background-color: gray;
+  }
+  &-mixed {
+    display: flex;
+    flex-wrap: wrap;
+    .avatar-one {
+      width: 50%;
+      height: 50%;
+    }
   }
 }
 

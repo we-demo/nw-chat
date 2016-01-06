@@ -42,7 +42,7 @@ export default class HomePage extends Component {
                     <li key={target.id} className="conver-li"
                       onClick={()=>setCurrConver(target.id)}>
                       <div className="conver-li-icon">
-                        <Avatar src={target.avatar} />
+                        <Avatar target={target} />
                       </div>
                       <div className="conver-li-desc">
                         ({item.type}) {target.name || target.title}
