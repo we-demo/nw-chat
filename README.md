@@ -12,7 +12,7 @@ NW.js + React + Redux + Webpack => Chat
 
 ## 设计理念
 
-－ 文件夹中设立index.js 合并导出各分组
+- 文件夹中设立index.js 合并导出各分组
 
   ```js
   export * from './userApi'

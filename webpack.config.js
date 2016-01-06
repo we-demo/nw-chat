@@ -39,7 +39,7 @@ module.exports = {
     packageMains: ['webpack', 'browser', 'web', 'browserify', ['jam', 'main'], 'main']
   },
   plugins: [
-    new WebpackNotifierPlugin(),
+    new WebpackNotifierPlugin({ alwaysNotify: true }),
     new CleanWebpackPlugin(['dist/']),
     // new webpack.NoErrorsPlugin(),
     new webpack.ExternalsPlugin('commonjs', [
