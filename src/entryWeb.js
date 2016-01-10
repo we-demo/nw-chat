@@ -5,9 +5,8 @@ import { Provider } from 'react-redux'
 import { Router, Route } from 'react-router'
 import LoginPage from './components/LoginPage'
 import HomePage from './components/HomePage'
-import { reloadWindow } from './desktop'
+import { showDevTools, reloadWindow } from './desktop'
 import 'normalize.css'
-// import '../lib/kite.min.css'
 import './app.scss'
 
 const store = global.store
@@ -28,6 +27,11 @@ if (process.env.NODE_ENV === 'development') {
     // Cmd+R Ctrl+R 刷新
     if ((ev.metaKey || ev.ctrlKey) && ev.keyCode === 82) {
       reloadWindow()
+    }
+
+    // Cmd+Opt+I 控制台
+    if (ev.metaKey && ev.altKey && ev.keyCode === 73) {
+      showDevTools()
     }
   })
 }

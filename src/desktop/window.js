@@ -18,7 +18,7 @@ export function closeWindow() {
 export function openWindow(url, opt) {
   return gui.Window.open(url, {
     frame: true,
-    toobar: false,
+    toolbar: false,
     focus: true,
     show: true,
     ...opt,

@@ -8,7 +8,8 @@ NW.js + React + Redux + Webpack => Chat
 - `npm run lint` eslint (confg-rackt)
 - `npm run test` mocha:test
 - `npm run test-cov` isparta coverage
-- `npm run dev` webpack:build+watch
+- `npm run dev` (dev)webpack:build+watch
+- `npm run prod` (prod)webpack:build+watch
 
 ## 设计理念
 
