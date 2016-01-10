@@ -9,7 +9,7 @@ import {
   currUser, currConver, listedConvers,
   converTarget,
 } from '../selectors'
-import { DDTrigger, DDPanel } from './Dropdown'
+import Panel from './Panel'
 import Editor from './Editor'
 import Avatar from './Avatar'
 
@@ -79,25 +79,22 @@ export default class HomePage extends Component {
           <h2>({currConver.type}) {target.name || target.title}</h2>
           <ul className="op-btn-group">
             <li>
-              <DDTrigger>
-                <div className="op-btn">发送文件</div>
-              </DDTrigger>
-              <DDPanel>
+              <input hidden ref="fileInput" type="file"
+                onChange={(e)=>{
+                  console.log('file', e.target.files[0])
+                  e.target.value = null // reset
+                }} />
+              <div className="op-btn" onClick={()=>{
+                this.refs.filePanel.toggle()
+              }}>发送文件</div>
+              <Panel ref="filePanel">
                 <ul className="op-menu">
-                  {[
-                    { label: '发送文件', value: 'sendfile' },
-                    { label: '文件助手', value: 'fileassit' },
-                    { label: '无效22222222' },
-                  ].map((item) => {
-                    const { label, value } = item
-                    return (
-                      <li key={label} onClick={(e)=>this.onMenuClick(e, value)}>
-                        {label}
-                      </li>
-                    )
-                  })}
+                  <li onClick={()=>{
+                    this.refs.fileInput.click() // 弹出fileDialog
+                  }}>发送文件</li>
+                  <li>文件助手</li>
                 </ul>
-              </DDPanel>
+              </Panel>
             </li>
             
           </ul>
