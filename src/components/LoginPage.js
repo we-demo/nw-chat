@@ -4,7 +4,7 @@ import {
   loadUsers, loadGroups, loadDiscus,
   loadConvers, userLogin,
 } from '../actions'
-import { openHome, closeWindow } from '../desktop'
+import { win, openHome } from '../desktop'
 
 
 function handleLogin() {
@@ -21,7 +21,7 @@ function handleLogin() {
     .then(loadDiscus)
     .then(loadConvers)
     .then(() => {
-      closeWindow()
+      win.close()
       openHome()
     })
     .catch((err) => {
@@ -30,6 +30,7 @@ function handleLogin() {
 }
 
 export default class LoginPage extends Component {
+
   render() {
     return (
       <div>

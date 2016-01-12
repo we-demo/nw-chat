@@ -5,11 +5,18 @@ import { Provider } from 'react-redux'
 import { Router, Route } from 'react-router'
 import LoginPage from './components/LoginPage'
 import HomePage from './components/HomePage'
-import { showDevTools, reloadWindow } from './desktop'
+import { win } from './desktop'
 import 'normalize.css'
 import './app.scss'
 
 const store = global.store
+
+win.on('loaded', () => {
+// setTimeout(() => {
+  win.show()
+  win.focus()
+// }, 500) // 等待加载就绪
+})
 
 
 render(
@@ -26,12 +33,12 @@ if (process.env.NODE_ENV === 'development') {
   window.addEventListener('keydown', (ev) => {
     // Cmd+R Ctrl+R 刷新
     if ((ev.metaKey || ev.ctrlKey) && ev.keyCode === 82) {
-      reloadWindow()
+      win.reload()
     }
 
     // Cmd+Opt+I 控制台
     if (ev.metaKey && ev.altKey && ev.keyCode === 73) {
-      showDevTools()
+      win.showDevTools()
     }
   })
 }

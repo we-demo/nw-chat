@@ -3,6 +3,8 @@ import gui from 'nw.gui'
 
 const win = gui.Window.get()
 
+export { gui, win }
+
 export function showDevTools() {
   win.showDevTools()
 }
@@ -19,8 +21,8 @@ export function openWindow(url, opt) {
   return gui.Window.open(url, {
     frame: true,
     toolbar: false,
-    focus: true,
-    show: true,
+    // focus: true,
+    show: false, // 加载就绪才显示
     ...opt,
   })
 }
