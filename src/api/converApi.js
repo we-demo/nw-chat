@@ -67,8 +67,11 @@ function mockMsg(fromId) {
     checked,
   }
   if (type === MSG_MIXED) {
-    msg.items = _.times(_.random(1, 3), () => {
-      return _.random() ? _.sample(pics) : chance.sentence()
+    msg.items = _.times(_.random(1, 5), () => {
+      const r = Math.random()
+      return r < .5 ?  { type: 'text', text: chance.sentence() } :
+        r < .8 ? { type: 'br' } :
+        { type: 'image', src: _.sample(pics) }
     })
   } else if (type === MSG_PIC) {
     msg.pic = _.sample(pics)

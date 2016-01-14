@@ -184,3 +184,15 @@ h1 {
     }
   }
 }
+
+// 消息列表
+.chat-msgs {
+  overflow: scroll;
+}
+.msg {
+  @extend .selectable;
+}
+.mixedMsg li {
+  display: inline;
+}
+

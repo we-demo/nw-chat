@@ -10,6 +10,7 @@ import {
   converTarget,
 } from '../selectors'
 import Panel from './Panel'
+import MsgList from './MsgList'
 import Editor from './Editor'
 import Avatar from './Avatar'
 
@@ -101,7 +102,9 @@ export default class HomePage extends Component {
         </div>
         <div className="chat-content">
           <div className="chat-main">
-            <div className="chat-msgs"></div>
+            <div className="chat-msgs">
+              <MsgList />
+            </div>
             <div className="chat-editor">
               <Editor />
             </div>
