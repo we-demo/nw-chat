@@ -13,6 +13,13 @@ html {
   -webkit-user-select: auto;
 }
 
+// 文本截断
+.text-cut {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 // 禁用mac上滑动回弹效果
 html {
   overflow: hidden;
@@ -133,11 +140,9 @@ h1 {
     box-sizing: border-box;
   }
   &-desc {
+    @extend .text-cut;
     flex: 1;
     line-height: 2em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
 }
 

@@ -33,9 +33,9 @@ export function loadDiscus() {
 function mockGroup() {
   const memberIds = _.sample(
     _.keys(global.__mockUsers),
-    _.random(1, 150),
+    _.random(1, 6),
   )
-  let adminIds = _.sample(memberIds, _.random(1, 6))
+  let adminIds = _.sample(memberIds, Math.min(_.random(1, 3), memberIds.length))
   if (_.random()) { // 一半的概率 自己是admin
     adminIds = _.union(adminIds, global.__currUserId)
   }
@@ -58,7 +58,7 @@ function mockGroup() {
 function mockDiscu() {
   const memberIds = _.sample(
     _.keys(global.__mockUsers),
-    _.random(1, 25),
+    _.random(1, 4),
   )
   const avatars = _.pluck(_.map(memberIds.slice(0, 4), (id) => {
     return global.__mockUsers[id]

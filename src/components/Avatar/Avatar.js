@@ -20,9 +20,9 @@ export default class Avatar extends Component {
     return ( // group discu
       <div className="avatar avatar-mixed">
         {
-          target.avatars.map((avatar) => {
+          target.avatars.map((avatar, i) => {
             return (
-              <OneAvatar key={avatar} src={avatar} />
+              <OneAvatar key={`${i}_${avatar}`} src={avatar} />
             )
           })
         }

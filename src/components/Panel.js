@@ -29,7 +29,11 @@ export default class Panel extends Component {
       window.removeEventListener('click', onGlobalClick)
       this.close()
     }
-    window.addEventListener('click', onGlobalClick)
+    // 延时绑定 否则当前click也会触发
+    // 似乎react-lite不会 react会
+    setTimeout(() => {
+      window.addEventListener('click', onGlobalClick)
+    }, 0)
 
     this.refs.panel.style.display = 'block'
     this.setState({ isOpen: true })
