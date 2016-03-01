@@ -29,6 +29,7 @@ export function save(dom) {
 export function restore() {
   if (savedRange) {
     // console.log('restore', savedRange)
+    clear()
     selection.addRange(savedRange)
     savedRange = null
   }
