@@ -6,6 +6,7 @@
     "show": false
   },
   "scripts": {
+    "start": "nw .",
     "lint": "eslint src test",
     "test": "mocha --compilers js:babel-core/register",
     "test-cov": "babel-node isparta cover node_modules/mocha/bin/_mocha",
@@ -48,11 +49,13 @@
     "history": "^1.13.1",
     "jquery": "^2.1.4",
     "localface": "0.0.3",
+    "lodash": "^3.10.1",
     "normalize.css": "^3.0.3",
     "react-lite": "0.0.18",
     "react-redux": "^4.0.0",
     "react-router": "^1.0.2",
     "redux": "^3.0.4",
+    "redux-promise": "^0.5.1",
     "redux-thunk": "^1.0.0"
   }
 }

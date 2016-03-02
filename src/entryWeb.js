@@ -36,8 +36,9 @@ if (process.env.NODE_ENV === 'development') {
       win.reload()
     }
 
-    // Cmd+Opt+I 控制台
-    if (ev.metaKey && ev.altKey && ev.keyCode === 73) {
+    // Cmd+Opt+I Ctrl+Shift+I 控制台
+    if ((ev.metaKey && ev.altKey || ev.ctrlKey && ev.shiftKey)
+      && ev.keyCode === 73) {
       win.showDevTools()
     }
   })

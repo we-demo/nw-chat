@@ -8,9 +8,13 @@ export function parse() {
 }
 
 export function filter(html) {
+  const mat = html.match(/<!--StartFragment-->(.*?)<!--EndFragment-->/)
+  if (mat) html = mat[1]
   const $src = $('<div>').html(html)
   const $dest = $('<div>')
   filterContent($src, $dest)
+  $dest.children('[x-block]').removeAttr('x-block')
+  $dest.children(':empty').remove()
   return $dest.html()
 }
 
@@ -53,7 +57,8 @@ function filterContent($src, $dest){
       return
     }
 
-    var html = $node.html().trim()
+    // var html = $node.html().trim()
+    var html = $node.html()
     if (!html) return
 
     var isBlock = $node.is(blockElements)
