@@ -69,7 +69,10 @@ function mockMsg(fromId) {
   if (type === MSG_MIXED) {
     msg.items = _.times(_.random(1, 5), () => {
       const r = Math.random()
-      return r < .5 ?  { type: 'text', text: chance.sentence() } :
+      return r < .5 ?  {
+        type: 'text', text: chance.sentence() +
+          _.sample([ '', '🍎', '😊', '💩', '😂' ]),
+      } :
         r < .8 ? { type: 'br' } :
         { type: 'image', src: _.sample(pics) }
     })

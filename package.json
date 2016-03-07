@@ -14,6 +14,7 @@
     "dev": "webpack -w --progress --config webpack.config.dev"
   },
   "devDependencies": {
+    "apple-color-emoji": "^0.1.7",
     "babel-core": "^6.3.21",
     "babel-eslint": "^4.1.6",
     "babel-loader": "^6.2.0",
