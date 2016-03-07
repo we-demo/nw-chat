@@ -7,21 +7,22 @@ ul {
 // 滚动条
 // http://blog.fritx.me/?weekly/151120
 ::-webkit-scrollbar{
-  width: 10px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track{
-  background-color: none;
+  // background-color: none;
+  background-color: rgba(0, 0, 0, 0.02);
 }
 ::-webkit-scrollbar-thumb{ /* 1 */
   border-radius: 10px!important;
-  background-color: rgba(178, 176, 176, 0.5);
+  background-color: rgba(0, 0, 0, 0.3);
   margin-right: 3px;
 }
 // :hover::-webkit-scrollbar-thumb { /* 2 */
 //   background-color: rgba(178, 176, 176, 0.9);
 // }
 ::-webkit-scrollbar-thumb:hover { /* 3 */
-  background-color: rgba(178, 176, 176, 0.7);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 // ::-webkit-scrollbar-thumb:active { /* 4 */
 //   background-color: rgba(178, 176, 176, 0.9);

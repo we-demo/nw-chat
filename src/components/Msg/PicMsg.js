@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Pic from './Pic'
 
 
 export default class PicMsg extends Component {
@@ -6,7 +7,7 @@ export default class PicMsg extends Component {
   render() {
     const { msg } = this.props
     return (
-      <img className="picMsg" src={msg.pic} />
+      <Pic src={msg.pic} />
     )
   }
 }
