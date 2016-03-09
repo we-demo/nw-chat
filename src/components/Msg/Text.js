@@ -1,21 +1,10 @@
 import React, { Component } from 'react'
-import emoji from 'apple-color-emoji'
+import { emojiReplace } from '../Emoji'
 
 export function textToHTML(text) {
   const node = document.createElement('div')
   node.textContent = text
   return node.innerHTML
-}
-
-export function emojiReplace(html) {
-  let _html
-  // _html = emoji.replace(html)
-  if (!emoji.nativeSupport) {
-    _html = html.replace(emoji.regex, (c) => {
-      return `<img class="emoji" src="${emoji.getImage(c)}" alt="${c}">`
-    })
-  }
-  return _html
 }
 
 export default class Text extends Component {

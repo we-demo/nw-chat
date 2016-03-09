@@ -13,11 +13,12 @@ import Panel from './Panel'
 import MsgList from './MsgList'
 import Editor from './Editor'
 import Avatar from './Avatar'
+import Emoji from './Emoji'
 
 
 @connect((state) => {
   return {
-    state, // fixme
+    root: state, // fixme
     currUser: currUser(state),
     currConver: currConver(state),
     listedConvers: listedConvers(state),
@@ -25,8 +26,15 @@ import Avatar from './Avatar'
 })
 export default class HomePage extends Component {
 
+  constructor() {
+    super()
+    this.state = {
+      isCtrlSend: false,
+    }
+  }
+
   render() {
-    const { state, currUser, currConver, listedConvers } = this.props
+    const { root, currUser, currConver, listedConvers } = this.props
     return (
       <div className="home-page">
         <div className="home-side">
@@ -38,7 +46,7 @@ export default class HomePage extends Component {
             <ul>
               {
                 _.map(listedConvers, (item) => {
-                  const target = converTarget(state, item)
+                  const target = converTarget(root, item)
                   return (
                     <li key={target.id} className="conver-li"
                       onClick={()=>setCurrConver(target.id)}>
@@ -71,9 +79,15 @@ export default class HomePage extends Component {
     e.__closePanel = (value != null)
   }
 
+  submitForm() {
+    // todo
+    console.log('submitForm')
+  }
+
   renderChat() {
-    const { state, currConver } = this.props
-    const target = converTarget(state, currConver)
+    const { root, currConver } = this.props
+    const { isCtrlSend } = this.state
+    const target = converTarget(root, currConver)
     return (
       <div className="home-chat">
         <div className="chat-top">
@@ -105,8 +119,63 @@ export default class HomePage extends Component {
             <div className="chat-msgs">
               <MsgList />
             </div>
-            <div className="chat-editor">
-              <Editor />
+            <div className="chat-toolbar">
+              <i style={{
+                color: isCtrlSend ? 'yellow' : 'inherit',
+              }} onClick={()=>{
+                this.setState({ isCtrlSend: !isCtrlSend })
+              }}>○</i>
+              <i onClick={()=>{
+                this.refs.emojiPanel.toggle()
+                this.refs.editor.focus()
+              }}>
+                ○
+                <Panel ref="emojiPanel">
+                  <ul className="emoji-picker" onClick={()=>{
+                    this.refs.editor.focus()
+                  }}>
+                    {
+                      [
+                        '😂', '🍎', '😊', '💩',
+                      ].map((c) => {
+                        return (
+                          <li key={c} onClick={()=>{
+                            this.refs.editor.insertHTML(c)
+                            this.refs.emojiPanel.close()
+                          }}><Emoji char={c} /></li>
+                        )
+                      })
+                    }
+                  </ul>
+                </Panel>
+              </i>
+              <i onClick={()=>{
+                const src = _.sample([
+                  '6442809.jpeg',
+                  'AAEAAQAAAAAAAAKdAAAAJDhmYmVjMWUzLTRhZjYtNDAxYi05NGJjLWNiMjIzYjVhOWE4Ng.jpg',
+                  'images.jpeg',
+                ])
+                this.refs.editor.insertImage(`media/${src}`)
+              }}>○</i>
+            </div>
+            <div className="chat-editor" onKeyDown={(e)=>{
+              // note: hasCtrl && !isCtrlSend insert换行
+              // 造成editor滚动失效
+              if (e.keyCode === 13) {
+                const hasCtrl = e.ctrlKey || e.metaKey
+                if (hasCtrl ^ isCtrlSend) { // 不一致
+                  if (hasCtrl) {
+                    e.preventDefault() // 滚动失效
+                    this.refs.editor.insertText('\n')
+                  } // else不处理 采用默认行为
+                } else { // 一致
+                  e.preventDefault()
+                  this.submitForm()
+                }
+                return
+              }
+            }}>
+              <Editor ref="editor" className="editor" />
             </div>
           </div>
           <div className="chat-side">

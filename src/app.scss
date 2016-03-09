@@ -146,6 +146,23 @@ h1 {
     vertical-align: bottom;
   }
 }
+.emoji-picker {
+  font-size: 1rem; // override
+  cursor: default; // override
+  background-color: rgba(255,255,255,.9);
+  width: 300px;
+  height: 140px;
+  position: relative;
+  top: -160px;
+  left: -140px;
+  box-sizing: border-box;
+  padding: .4em;
+  >li {
+    float: left;
+    padding: .1em;
+    cursor: pointer;
+  }
+}
 
 // 头像
 .avatar {
@@ -237,7 +254,8 @@ h1 {
 .mixedMsg li {
   display: inline;
 }
-.emoji {
+.emoji, 
+img[src*="apple-color-emoji"] {
   width: 1.22em;
   height: 1.22em;
   vertical-align: middle;

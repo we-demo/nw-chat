@@ -34,6 +34,7 @@ module.exports = {
       'babel-polyfill',
       'lodash',
       'chance',
+      'mime',
     ]),
     new webpack.DefinePlugin({
       'rootDir': JSON.stringify(__dirname)
