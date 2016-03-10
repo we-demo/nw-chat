@@ -9,6 +9,8 @@ import {
   currUser, currConver, listedConvers,
   converTarget,
 } from '../selectors'
+import { IS_MAC } from '../const'
+import { win } from '../desktop'
 import Panel from './Panel'
 import MsgList from './MsgList'
 import Editor from './Editor'
@@ -30,6 +32,14 @@ export default class HomePage extends Component {
     super()
     this.state = {
       isCtrlSend: false,
+    }
+  }
+
+  componentDidMount() {
+    // note: 解决mac上 跨窗口不触发editor/blur
+    // 手动触发
+    if (IS_MAC) {
+      win.on('blur', () => this.onBlur())
     }
   }
 
@@ -77,6 +87,36 @@ export default class HomePage extends Component {
     // 不传value表示无效区域 反之则关闭panel
     // react:event 必须持续覆盖赋值
     e.__closePanel = (value != null)
+  }
+
+  onFocus() {
+    this.refs.editor.restoreRange()
+  }
+  onBlur() {
+    const { editor } = this.refs
+    editor.lint()
+    editor.saveRange()
+
+    // 解决win上其他域选中干扰
+    editor.clearRange()
+  }
+  onKeyDown(e) {
+    const { isCtrlSend } = this.state
+    // note: hasCtrl && !isCtrlSend insert换行
+    // 造成editor滚动失效
+    if (e.keyCode === 13) {
+      const hasCtrl = e.ctrlKey || e.metaKey
+      if (hasCtrl ^ isCtrlSend) { // 不一致
+        if (hasCtrl) {
+          e.preventDefault() // 滚动失效
+          this.refs.editor.insertText('\n')
+        } // else不处理 采用默认行为
+      } else { // 一致
+        e.preventDefault()
+        this.submitForm()
+      }
+      return
+    }
   }
 
   submitForm() {
@@ -158,23 +198,10 @@ export default class HomePage extends Component {
                 this.refs.editor.insertImage(`media/${src}`)
               }}>○</i>
             </div>
-            <div className="chat-editor" onKeyDown={(e)=>{
-              // note: hasCtrl && !isCtrlSend insert换行
-              // 造成editor滚动失效
-              if (e.keyCode === 13) {
-                const hasCtrl = e.ctrlKey || e.metaKey
-                if (hasCtrl ^ isCtrlSend) { // 不一致
-                  if (hasCtrl) {
-                    e.preventDefault() // 滚动失效
-                    this.refs.editor.insertText('\n')
-                  } // else不处理 采用默认行为
-                } else { // 一致
-                  e.preventDefault()
-                  this.submitForm()
-                }
-                return
-              }
-            }}>
+            <div className="chat-editor"
+              onFocus={(e) => this.onFocus(e)}
+              onBlur={(e) => this.onBlur(e)}
+              onKeyDown={(e) => this.onKeyDown(e)}>
               <Editor ref="editor" className="editor" />
             </div>
           </div>

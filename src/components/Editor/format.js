@@ -98,7 +98,7 @@ function filterContent($src, $dest) {
   }
 }
 
-export function clean(dom) {
+export function lint(dom) {
 
   return // 暂时取消
   // console.log('dom', dom.innerHTML)

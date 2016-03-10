@@ -21,8 +21,9 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'react': 'react-lite',
-      'react-dom': 'react-lite',
+      // 不用react-lite 影响Editor:focus/blur
+      // 'react': 'react-lite',
+      // 'react-dom': 'react-lite',
     },
     extensions: ['', '.js', '.jsx'],
     packageMains: ['webpack', 'browser', 'web', 'browserify', ['jam', 'main'], 'main']

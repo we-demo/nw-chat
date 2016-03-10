@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { filter, clean } from './format'
-import { clear, save, restore } from './selection'
+import { filter, lint } from './format'
+import { clearRange, setRange, getRange } from './range'
 import pasteFile from './pasteFile'
 import { emojiReplace } from '../Emoji'
 import { escapeHTML } from '../Text'
@@ -10,12 +10,30 @@ export default class Editor extends Component {
 
   constructor() {
     super()
+    this.savedRange = null
     global.editor = this
   }
 
   focus() {
     this.refs.edit.blur() // 确保focus有效
     this.refs.edit.focus()
+  }
+
+  lint() {
+    lint(this.refs.edit)
+  }
+  clearRange() {
+    clearRange()
+  }
+  restoreRange() {
+    if (this.savedRange) setRange(this.savedRange)
+    console.log('restore', !!this.savedRange)
+    this.savedRange = null
+  }
+  saveRange() {
+    const range = getRange(this.refs.edit)
+    console.log('save', !!range)
+    if (range) this.savedRange = range
   }
 
   insertHTML(html) {
@@ -63,33 +81,19 @@ export default class Editor extends Component {
         // document.execCommand('insertHtml', 0, _html)
         // document.execCommand('insertText', 0, text)
       }
-      clean(this.refs.edit)
+      this.lint()
     })
   }
 
-  onFocus() {
-    restore()
-  }
-
-  onBlur() {
-    clean(this.refs.edit)
-    save(this.refs.edit)
-
-    // 解决win上其他域选中干扰
-    clear()
-  }
-
-  // 确保选中前clean 不影响选中
+  // 确保选中前lint 不影响选中
   onMouseDown() {
-    clean(this.refs.edit)
+    this.lint()
   }
 
   render() {
     return (
       <div ref="edit" contentEditable
         onMouseDown={this.onMouseDown.bind(this)}
-        onBlur={this.onBlur.bind(this)}
-        onFocus={this.onFocus.bind(this)}
         onPaste={this.onPaste.bind(this)}
         {...this.props} />
     )
