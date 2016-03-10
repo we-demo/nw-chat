@@ -32,12 +32,17 @@ module.exports = {
     // new webpack.NoErrorsPlugin(),
     new webpack.ExternalsPlugin('commonjs', [
       'babel-polyfill',
+      'bluebird',
       'lodash',
       'chance',
       'mime',
+      'apple-color-emoji',
     ]),
-    new webpack.DefinePlugin({
-      'rootDir': JSON.stringify(__dirname)
-    })
+    new webpack.ProvidePlugin({
+      Promise: 'bluebird',
+    }),
+    // new webpack.DefinePlugin({
+    //   'rootDir': JSON.stringify(__dirname)
+    // })
   ],
 };

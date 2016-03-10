@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Text from './Text'
-import Pic from './Pic'
+import Text from '../Text'
+import Pic from '../Pic'
 
 
 export default class MixedMsg extends Component {

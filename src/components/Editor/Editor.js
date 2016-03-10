@@ -3,7 +3,7 @@ import { filter, clean } from './format'
 import { clear, save, restore } from './selection'
 import pasteFile from './pasteFile'
 import { emojiReplace } from '../Emoji'
-import { textToHTML } from '../Msg/Text'
+import { escapeHTML } from '../Text'
 
 
 export default class Editor extends Component {
@@ -14,6 +14,7 @@ export default class Editor extends Component {
   }
 
   focus() {
+    this.refs.edit.blur() // 确保focus有效
     this.refs.edit.focus()
   }
 
@@ -23,7 +24,7 @@ export default class Editor extends Component {
     document.execCommand('insertHTML', 0, html)
   }
   insertText(text) {
-    const html = textToHTML(text)
+    const html = escapeHTML(text)
     this.insertHTML(html)
   }
   insertImage(src) {

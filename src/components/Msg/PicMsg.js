@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Pic from './Pic'
+import Pic from '../Pic'
 
 
 export default class PicMsg extends Component {

@@ -46,6 +46,7 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.3.14",
+    "bluebird": "^3.3.4",
     "chance": "^0.8.0",
     "history": "^1.13.1",
     "jquery": "^2.1.4",

@@ -4,11 +4,10 @@ import emoji from 'apple-color-emoji'
 export function emojiReplace(html) {
   let _html
   // _html = emoji.replace(html)
-  if (!emoji.nativeSupport) {
-    _html = html.replace(emoji.regex, (c) => {
-      return `<img class="emoji" src="${emoji.getImage(c)}" alt="${c}">`
-    })
-  }
+  // 不管emoji.nativeSupport 一律转换
+  _html = html.replace(emoji.regex, (c) => {
+    return `<img class="emoji" src="${emoji.getImage(c)}" alt="${c}">`
+  })
   return _html
 }
 
