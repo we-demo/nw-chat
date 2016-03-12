@@ -1,7 +1,18 @@
 'use strict'
 const path = require('path')
+const _ = require('lodash')
 const webpack = require('webpack')
 const WebpackNotifierPlugin = require('webpack-notifier')
+const deps = _.keys(require('./package.json').dependencies)
+
+const inlinedDeps = [
+  "normalize.css",
+  'react',
+  'react-dom',
+  'react-router',
+  "react-redux",
+]
+const externalDeps = _.without(deps, ...inlinedDeps)
 
 module.exports = {
   module: {
@@ -31,14 +42,7 @@ module.exports = {
   plugins: [
     new WebpackNotifierPlugin({ alwaysNotify: true }),
     // new webpack.NoErrorsPlugin(),
-    new webpack.ExternalsPlugin('commonjs', [
-      'babel-polyfill',
-      'bluebird',
-      'lodash',
-      'chance',
-      'mime',
-      'apple-color-emoji',
-    ]),
+    new webpack.ExternalsPlugin('commonjs', externalDeps),
     new webpack.ProvidePlugin({
       Promise: 'bluebird',
     }),

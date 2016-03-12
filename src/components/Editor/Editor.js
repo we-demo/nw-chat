@@ -27,12 +27,10 @@ export default class Editor extends Component {
   }
   restoreRange() {
     if (this.savedRange) setRange(this.savedRange)
-    console.log('restore', !!this.savedRange)
     this.savedRange = null
   }
   saveRange() {
     const range = getRange(this.refs.edit)
-    console.log('save', !!range)
     if (range) this.savedRange = range
   }
 

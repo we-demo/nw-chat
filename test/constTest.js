@@ -1,15 +1,15 @@
 
 import assert from 'assert'
 import _ from 'lodash'
-import * as allConst from '../src/const'
-// import * as actionTypes from '../src/const/actionTypes'
+// import * as allConst from '../src/const/actinTypes'
+import * as actionTypes from '../src/const/actionTypes'
 // import * as chatTypes from '../src/const/chatTypes'
 
 describe('const', () => {
 
   it('# key: key', () => {
 
-    _.each(allConst, (v, k) => {
+    _.each(actionTypes, (v, k) => {
       assert.equal(v, k)
     })
 

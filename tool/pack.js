@@ -1,4 +1,5 @@
 'use strict'
+const Promise = require('bluebird')
 const fs = require('fs-extra')
 const exec = require('child_process').exec
 const lock = require('fs-auth').lock

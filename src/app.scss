@@ -149,9 +149,10 @@ h1 {
 .emoji-picker {
   font-size: 1rem; // override
   cursor: default; // override
-  background-color: rgba(255,255,255,.9);
-  width: 300px;
-  height: 140px;
+  background-color: rgba(255,255,255,.98);
+  width: 314px; // 13c
+  height: 140px; // 8r
+  overflow-y: auto;
   position: relative;
   top: -160px;
   left: -140px;
