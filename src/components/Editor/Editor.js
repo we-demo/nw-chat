@@ -10,7 +10,6 @@ export default class Editor extends Component {
 
   constructor() {
     super()
-    this.savedRange = null
     global.editor = this
   }
 
@@ -25,13 +24,18 @@ export default class Editor extends Component {
   clearRange() {
     clearRange()
   }
-  restoreRange() {
-    if (this.savedRange) setRange(this.savedRange)
-    this.savedRange = null
+  getRange() {
+    return getRange(this.refs.edit)
   }
-  saveRange() {
-    const range = getRange(this.refs.edit)
-    if (range) this.savedRange = range
+  setRange(range) {
+    setRange(range)
+  }
+
+  getHTML() {
+    return this.refs.edit.innerHTML
+  }
+  setHTML(html) {
+    this.refs.edit.innerHTML = html
   }
 
   insertHTML(html) {

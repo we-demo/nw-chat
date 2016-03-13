@@ -12,3 +12,5 @@ export const LOAD_CONVER = 'LOAD_CONVER'
 export const SET_CURR_CONVER = 'SET_CURR_CONVER'
 export const ADD_CONVER = 'ADD_CONVER'
 export const REMOVE_CONVER = 'REMOVE_CONVER'
+
+export const SAVE_EDITOR = 'SAVE_EDITOR'

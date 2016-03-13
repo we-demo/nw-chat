@@ -4,14 +4,14 @@ import { connect } from 'react-redux'
 import _ from 'lodash'
 import emojilib from 'emojilib'
 import {
-  setCurrConver,
+  setCurrConver, saveEditor,
 } from '../actions'
 import {
   currUser, currConver, listedConvers,
   converTarget,
 } from '../selectors'
-import { IS_MAC } from '../const'
-import { win } from '../desktop'
+// import { IS_MAC } from '../const'
+// import { win } from '../desktop'
 import Panel from './Panel'
 import MsgList from './MsgList'
 import Editor from './Editor'
@@ -34,13 +34,28 @@ export default class HomePage extends Component {
     this.state = {
       isCtrlSend: false,
     }
+    this.lastConverId = null
+    this.savedRange = null
+    this.editorFocused = false
   }
 
   componentDidMount() {
-    // note: 解决mac上 跨窗口不触发editor/blur 需手动触发
+    // note: 解决mac上 跨窗口不触发editor:blur/focus 需手动触发
     // fixme: 应针对HomeChat绑定 确保editor存在
-    if (IS_MAC) {
-      win.on('blur', () => this.onBlur())
+    // if (IS_MAC) {
+    //   win.on('blur', () => this.onBlur())
+    //   win.on('focus', () => this.onFocus())
+    // }
+  }
+
+  componentDidUpdate() {
+    const { currConver } = this.props
+    const { editor } = this.refs
+    if (currConver && currConver.targetId !== this.lastConverId) { // 回话切换
+      this.lastConverId = currConver.targetId
+      editor.focus()
+      const { html } = currConver.editor
+      if (html) editor.setHTML(html)
     }
   }
 
@@ -90,13 +105,28 @@ export default class HomePage extends Component {
     e.__closePanel = (value != null)
   }
 
+  saveEditor() {
+    const { currConver } = this.props
+    const { editor } = this.refs
+    this.savedRange = editor.getRange()
+    saveEditor(currConver.targetId, editor.getHTML())
+  }
+  restoreEditor() {
+    const range = this.savedRange
+    if (range) this.refs.editor.setRange(range)
+  }
+
   onFocus() {
-    this.refs.editor.restoreRange()
+    if (this.editorFocused) return
+    this.editorFocused = true
+    this.restoreEditor()
   }
   onBlur() {
+    if (!this.editorFocused) return
+    this.editorFocused = false
     const { editor } = this.refs
     editor.lint()
-    editor.saveRange()
+    this.saveEditor()
 
     // 解决win上其他域选中干扰
     editor.clearRange()

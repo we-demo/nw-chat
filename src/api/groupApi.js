@@ -13,7 +13,7 @@ export function loadGroups() {
       groups = _.mapKeys(groups, 'id')
       global.__mockGroups = groups
       res(groups)
-    }, 500)
+    }, 50)
   })
 }
 
@@ -26,7 +26,7 @@ export function loadDiscus() {
       discus = _.mapKeys(discus, 'id')
       global.__mockDiscus = discus
       res(discus)
-    }, 500)
+    }, 50)
   })
 }
 

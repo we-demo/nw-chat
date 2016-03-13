@@ -7,8 +7,20 @@ import {
 import { win, openHome } from '../desktop'
 
 
-function handleLogin() {
-  userLogin('test.user', '123')
+export default class LoginPage extends Component {
+
+  constructor() {
+    super()
+    this.state = { isLogining: false }
+  }
+
+  componentDidMount() {
+    this.onLogin() // test
+  }
+
+  onLogin() {
+    this.setState({ isLogining: true })
+    userLogin('test.user', '123')
     .then((user) => {
       console.log('login success', user)
     })
@@ -27,15 +39,18 @@ function handleLogin() {
     .catch((err) => {
       console.error(err)
     })
-}
-
-export default class LoginPage extends Component {
+  }
 
   render() {
+    const { isLogining } = this.state
     return (
       <div>
         <h1>Hello</h1>
-        <button onClick={handleLogin}>Login</button>
+        <button onClick={() => {
+          this.onLogin()
+        }} disabled={isLogining}>
+          {isLogining ? 'Logining...' : 'Login'}
+        </button>
       </div>
     )
   }

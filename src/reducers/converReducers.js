@@ -6,6 +6,7 @@ import {
   SET_CURR_CONVER,
   ADD_CONVER,
   REMOVE_CONVER,
+  SAVE_EDITOR,
 } from '../const'
 
 /*
@@ -61,6 +62,17 @@ export function cachedConvers(state = {}, action) {
       return {
         ...state,
         [action.payload.id]: action.payload,
+      }
+
+    case SAVE_EDITOR:
+      return {
+        ...state,
+        [action.payload.id]: {
+          ...state[action.payload.id],
+          editor: {
+            html: action.payload.html,
+          },
+        },
       }
 
     default:

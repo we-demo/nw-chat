@@ -43,11 +43,14 @@ export function loadConvers() {
           type,
           targetId,
           msgs,
+          editor: {
+            html: chance.sentence(),
+          },
         }
       })
       convers = _.mapKeys(convers, 'targetId')
       res(convers)
-    }, 1000)
+    }, 100)
   })
 }
 

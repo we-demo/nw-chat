@@ -17,7 +17,7 @@ export function userLogin(id, password) {
       user.name = id
       global.__currUserId = id
       res(user)
-    }, 1000)
+    }, 100)
   })
 }
 
@@ -29,7 +29,7 @@ export function loadUsers() {
       })
       users = _.mapKeys(users, 'id')
       res(users)
-    }, 500)
+    }, 50)
   })
 }
 
