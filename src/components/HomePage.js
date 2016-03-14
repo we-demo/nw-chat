@@ -53,9 +53,13 @@ export default class HomePage extends Component {
     const { editor } = this.refs
     if (currConver && currConver.targetId !== this.lastConverId) { // 回话切换
       this.lastConverId = currConver.targetId
-      editor.focus()
       const { html } = currConver.editor
       if (html) editor.setHTML(html)
+      editor.focus()
+      const range = document.createRange() // 指针插入最后
+      range.selectNodeContents(editor.refs.edit)
+      range.collapse()
+      editor.setRange(range)
     }
   }
 
