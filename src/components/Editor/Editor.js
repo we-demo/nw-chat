@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { filter, lint } from './format'
 import { clearRange, setRange, getRange } from './range'
 import pasteFile from './pasteFile'
-import { emojiReplace } from '../Emoji'
-import { escapeHTML } from '../Text'
+// import { emojiReplace } from '../Emoji'
+// import { escapeHTML } from '../Text'
 
 
 export default class Editor extends Component {
@@ -40,12 +40,14 @@ export default class Editor extends Component {
 
   insertHTML(html) {
     this.focus()
-    html = emojiReplace(html)
+    // html = emojiReplace(html)
     document.execCommand('insertHTML', 0, html)
   }
   insertText(text) {
-    const html = escapeHTML(text)
-    this.insertHTML(html)
+    // const html = escapeHTML(text)
+    // this.insertHTML(html) // ctrl+enter换行受影响
+    this.focus()
+    document.execCommand('insertText', 0, text)
   }
   insertImage(src) {
     this.insertHTML(`<img src="${src}">`)

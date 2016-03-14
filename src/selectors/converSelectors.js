@@ -17,6 +17,7 @@ export function listedConvers(state) {
 }
 
 export function converTarget(state, conver) {
+  if (!conver) return null
   switch (conver.type) {
     case CONVER_USER:
       return state.cachedUsers[conver.targetId]
