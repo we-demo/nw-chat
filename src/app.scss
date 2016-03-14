@@ -161,6 +161,9 @@ h1 {
   >li {
     float: left;
     padding: .1em;
+    // width: 1.5em;
+    // height: 1.5em;
+    // text-indent: 0.24em; // 抵消mac字符自带的右边距
     cursor: pointer;
   }
 }

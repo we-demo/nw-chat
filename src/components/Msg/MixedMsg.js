@@ -7,28 +7,31 @@ export default class MixedMsg extends Component {
 
   render() {
     const { msg } = this.props
+
+    // note: 原本为ul/li结构 后转div/span
+    // 为了兼容 Editor/filter的换行处理
     return (
-      <ul className="mixedMsg">
+      <div className="mixedMsg">
         {
           msg.items.map((item, i) => {
             if (item.type === 'text') {
               return (
-                <li key={i}><Text text={item.text} /></li>
+                <span key={i}><Text text={item.text} /></span>
               )
             }
             if (item.type === 'br') {
               return (
-                <li key={i}><br /></li>
+                <span key={i}><br /></span>
               )
             }
             if (item.type === 'image') {
               return (
-                <li key={i}><Pic src={item.src} /></li>
+                <span key={i}><Pic src={item.src} /></span>
               )
             }
           })
         }
-      </ul>
+      </div>
     )
   }
 }

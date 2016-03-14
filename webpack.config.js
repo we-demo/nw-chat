@@ -6,13 +6,14 @@ const WebpackNotifierPlugin = require('webpack-notifier')
 const deps = _.keys(require('./package.json').dependencies)
 
 const inlinedDeps = [
-  "normalize.css",
+  'normalize.css',
   'react',
   'react-dom',
   'react-router',
   "react-redux",
 ]
-const externalDeps = _.without(deps, ...inlinedDeps)
+// const externalDeps = _.without(deps, ...inlinedDeps)
+const externalDeps = _.without.apply(null, [deps].concat(inlinedDeps))
 
 module.exports = {
   module: {
