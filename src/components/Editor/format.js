@@ -16,7 +16,11 @@ export function filter(html) {
   const $dest = $('<div>')
   filterContent($src, $dest)
   $dest.children('[x-block]').removeAttr('x-block')
-  $dest.children(':empty').remove()
+  // $dest.children(':empty').remove()
+  $dest.children('div').each((i, el) => {
+    const $el = $(el)
+    if (!$el.html().trim()) $el.remove()
+  })
   return $dest.html()
 }
 
@@ -39,6 +43,9 @@ function filterContent($src, $dest) {
     }
 
     var $node = $(node)
+
+    // 过滤无效的标签
+    if ($node.is('head, meta, link, style, script')) return
 
     // 过滤消息中的用户头像
     if ($node.is('[headimg], .avatar, .nocopy')) return
