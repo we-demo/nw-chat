@@ -3,4 +3,5 @@ dist/
 dist_pack/
 coverage/
 cache/
+log/
 *.log

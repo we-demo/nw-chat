@@ -11,6 +11,15 @@ import './app.scss'
 
 const store = global.store
 
+
+// 将抛出的错误 输出到主console 便于查看
+window.addEventListener('error', (ev) => {
+  if (console !== global.mConsole) {
+    global.mConsole.error(ev.error)
+  }
+})
+
+
 win.on('loaded', () => {
 // setTimeout(() => {
   win.show()
