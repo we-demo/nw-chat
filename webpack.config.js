@@ -11,6 +11,7 @@ const inlinedDeps = [
   'react-dom',
   'react-router',
   "react-redux",
+  "redux-form",
 ]
 // const externalDeps = _.without(deps, ...inlinedDeps)
 const externalDeps = _.without.apply(null, [deps].concat(inlinedDeps))

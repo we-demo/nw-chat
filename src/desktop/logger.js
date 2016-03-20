@@ -1,7 +1,7 @@
 
 import log4js from 'log4js'
 import fs from 'fs-extra'
-import { isError } from 'lodash'
+import { isError } from 'util'
 
 const date = new Date()
 const dstr = new Date(

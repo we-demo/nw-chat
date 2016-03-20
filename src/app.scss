@@ -120,6 +120,13 @@ h1 {
   height: 120px;
 }
 
+// 登录窗
+.login-page {
+  input, button {
+    display: block;
+  }
+}
+
 // 编辑器
 .chat-toolbar {
   >i {

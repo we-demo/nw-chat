@@ -1,12 +1,17 @@
 
 import React, { Component } from 'react'
+import { reduxForm } from 'redux-form'
 import {
   loadUsers, loadGroups, loadDiscus,
   loadConvers, userLogin,
 } from '../actions'
-import { win, openHome } from '../desktop'
+import { win, openHome, logError } from '../desktop'
 
 
+@reduxForm({
+  form: 'login',
+  fields: [ 'username', 'password' ],
+})
 export default class LoginPage extends Component {
 
   constructor() {
@@ -15,43 +20,48 @@ export default class LoginPage extends Component {
   }
 
   componentDidMount() {
-    this.onLogin() // test
+    // this.onLogin() // test
   }
 
   onLogin() {
+    const { username, password } = this.props.fields
     this.setState({ isLogining: true })
-    userLogin('test.user', '123')
-    .then((user) => {
-      console.log('login success', user)
-    })
-    .catch((err) => {
-      console.error(err)
-      alert(err.message)
-    })
-    .then(loadUsers)
-    .then(loadGroups)
-    .then(loadDiscus)
-    .then(loadConvers)
-    .then(() => {
-      win.close()
-      openHome()
-    })
-    .catch((err) => {
-      console.error(err)
-    })
+    // userLogin('test.user', '123')
+    userLogin(username.value, password.value)
+      .then((user) => {
+        console.log('login success', user)
+      })
+      .catch((err) => {
+        this.setState({ isLogining: false })
+        alert(err.message)
+        throw new Error('login failed')
+      })
+      .then(loadUsers)
+      .then(loadGroups)
+      .then(loadDiscus)
+      .then(loadConvers)
+      .then(() => {
+        // this.setState({ isLogining: false })
+        win.close()
+        openHome()
+      })
+      .catch(logError) // 最底
   }
 
   render() {
     const { isLogining } = this.state
+    const { username, password } = this.props.fields
     return (
-      <div>
+      <form className="login-page">
         <h1>Hello</h1>
-        <button onClick={() => {
+        <input type="text" placeholder="Username..." {...username} />
+        <input type="password" placeholder="Password..." {...password} />
+        <button type="submit" onClick={() => {
           this.onLogin()
         }} disabled={isLogining}>
           {isLogining ? 'Logining...' : 'Login'}
         </button>
-      </div>
+      </form>
     )
   }
 }
