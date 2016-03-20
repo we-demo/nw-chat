@@ -28,19 +28,21 @@ export function openWindow(url, opt) {
 }
 
 export function openLogin() {
-  openWindow('./index.html#/login', {
+  const win = openWindow('./index.html#/login', {
     title: 'Login',
     width: 400,
     height: 600,
   })
+  global.wins.login = win
 }
 
 export function openHome() {
-  openWindow('./index.html#/home', {
+  const win = openWindow('./index.html#/home', {
     title: 'Home',
     width: 900,
     height: 600,
   })
+  global.wins.home = win
 }
 
 

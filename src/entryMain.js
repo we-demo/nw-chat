@@ -4,10 +4,17 @@ import configureStore from './configureStore'
 
 global.store = configureStore()
 global.mConsole = console
+global.wins = {}
 
 // 调试
 if (process.env.NODE_ENV === 'development') {
   win.showDevTools()
+}
+if (process.env.NW_AUTO === '1') {
+  // 加载nwauto安装脚本
+  const script = document.createElement('script')
+  script.src = '../nw-auto/dist/nw-install-main.js'
+  document.body.appendChild(script)
 }
 
 

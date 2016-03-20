@@ -20,9 +20,7 @@ config.output = {
 config.plugins.push(
   new CleanWebpackPlugin(['dist_pack/', '../nw-chat-pack/dist/']),
   new webpack.DefinePlugin({
-    'process.env': {
-      'NODE_ENV': JSON.stringify('production')
-    }
+    'process.env.NODE_ENV': JSON.stringify('production')
   }),
   new webpack.optimize.UglifyJsPlugin({
     compressor: {

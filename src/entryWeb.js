@@ -42,6 +42,13 @@ if (process.env.NODE_ENV === 'development') {
   })
 }
 
+if (process.env.NW_AUTO === '1') {
+  // 加载nwauto安装脚本
+  const script = document.createElement('script')
+  script.src = '../nw-auto/dist/nw-install-web.js'
+  document.body.appendChild(script)
+}
+
 // render放最后 否则一旦报错即阻塞执行
 render(
   <Provider store={store}>
