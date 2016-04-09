@@ -2,6 +2,7 @@
   "name": "nw-chat",
   "version": "0.0.0",
   "main": "index.html#/main",
+  "single-instance": false,
   "window": {
     "show": false
   },
