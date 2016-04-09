@@ -18,13 +18,28 @@ export function closeWindow() {
 }
 
 export function openWindow(url, opt) {
-  return gui.Window.open(url, {
+  opt = {
     frame: true,
     toolbar: false,
     // focus: true,
     show: false, // 加载就绪才显示
     ...opt,
-  })
+  }
+  if (process.env.NW_AUTO_NOFOCUS === '1') {
+    opt.focus = false
+  }
+  if (process.env.NW_AUTO_NOSHOW === '1') {
+    // opt.show = false
+    opt.x = opt.y = -99999 // 看不见的地方
+  }
+  const win = gui.Window.open(url, opt)
+  if (process.env.NW_AUTO_NOFOCUS === '1') {
+    win.focus = () => {}
+  }
+  if (process.env.NW_AUTO_NOSHOW === '1') {
+    // win.show = () => {} // 会影响登录 而且已不必要
+  }
+  return win
 }
 
 export function openLogin() {
