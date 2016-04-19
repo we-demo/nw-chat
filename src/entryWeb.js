@@ -6,6 +6,7 @@ import { Router, Route } from 'react-router'
 import LoginPage from './components/LoginPage'
 import HomePage from './components/HomePage'
 import { win } from './desktop'
+import { join } from 'path'
 import 'normalize.css'
 import './app.scss'
 
@@ -45,7 +46,7 @@ if (process.env.NODE_ENV === 'development') {
 if (process.env.NW_AUTO === '1') {
   // 加载nwauto安装脚本
   const script = document.createElement('script')
-  script.src = '../nw-auto/dist/nw-install-web.js'
+  script.src = join(process.env.NW_AUTO_DIST, 'nw-install-web.js')
   document.body.appendChild(script)
 }
 

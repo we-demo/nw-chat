@@ -1,6 +1,7 @@
 
 import { win, openLogin, fixMacMenu, logError } from './desktop'
 import configureStore from './configureStore'
+import { join } from 'path'
 
 global.store = configureStore()
 global.mConsole = console
@@ -13,7 +14,7 @@ if (process.env.NODE_ENV === 'development') {
 if (process.env.NW_AUTO === '1') {
   // 加载nwauto安装脚本
   const script = document.createElement('script')
-  script.src = '../nw-auto/dist/nw-install-main.js'
+  script.src = join(process.env.NW_AUTO_DIST, 'nw-install-main.js')
   document.body.appendChild(script)
 }
 
